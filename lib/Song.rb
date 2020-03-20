@@ -38,4 +38,13 @@ class Song
     new_song.save
     new_song
   end
+
+  def self.find_by_name(name)
+    all.detect {|song| song.name == name}
+  end
+
+  def self.find_or_create_by_name(song) #find or create class meth to create instances?
+    #this uses the find_by_name method or the cretae method...evaluates if one is true
+    self.find_by_name(song) || self.create(song)
+  end
 end
