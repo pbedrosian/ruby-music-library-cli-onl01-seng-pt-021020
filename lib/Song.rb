@@ -44,7 +44,7 @@ class Song
   end
 
   def self.find_or_create_by_name(song) #find or create class meth to create instances?
-    #this uses the find_by_name method or the cretae method...evaluates if one is true
+    #this uses the find_by_name method or the cretae method...evaluates if one is true and does that action
     self.find_by_name(song) || self.create(song)
   end
 end
