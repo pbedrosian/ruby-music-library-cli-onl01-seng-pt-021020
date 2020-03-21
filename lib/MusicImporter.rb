@@ -1,3 +1,4 @@
+require 'pry'
 class MusicImporter
 
   attr_accessor :path
@@ -12,8 +13,12 @@ class MusicImporter
       Dir.entries(path).select{|file| file.end_with?(".mp3")}
   end
 
-  def new_from_filename
-    files.each {|new_file| Song.new_from_filename(new_file)}
+  # def new_from_filename
+  #   files.each {|new_file| Song.new_from_filename(new_file)}
+  # end
+
+  def import #this calls the files method (retreives files) the one by one, imports them using the Song.create_from_filename method
+    files.each {|filename| Song.create_from_filename(filename)}
   end
 
 end

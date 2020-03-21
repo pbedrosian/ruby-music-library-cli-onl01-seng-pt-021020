@@ -58,14 +58,17 @@ class Song
 
     artist, name, genre = file[0], file[1], file[2].chomp(".mp3") #his sets the name, artist and genre to the files index number
 
-    #we want to make sure that we are only making new genres and artist so we call the find_or_create_by_name for both classes so we do not overlap and create duplicates 
+    #we want to make sure that we are only making new genres and artist so we call the find_or_create_by_name for both classes so we do not overlap and create duplicates
     genre = Genre.find_or_create_by_name(genre)
     artist = Artist.find_or_create_by_name(artist)
 
     new(name,artist,genre)#creates new instance using file name parts.
 
 
-    # binding.pry
+  end
+
+  def self.create_from_filename(filename) #this method uses the new_from_filename method to create a new instance based on a given file. The .tap is able to call the object indside the block.  
+    new_from_filename(filename).tap {|file| file.save}
   end
 
 end
