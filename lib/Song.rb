@@ -1,3 +1,5 @@
+require 'pry'
+
 class Song
 
   attr_accessor :name
@@ -47,4 +49,21 @@ class Song
     #this uses the find_by_name method or the cretae method...evaluates if one is true and does that action
     self.find_by_name(song) || self.create(song)
   end
+
+
+
+  def self.new_from_filename(filename) #this is what is being taken in "Thundercat - For Love I Come - dance.mp3"
+
+    file = filename.split(" - ") #this splits the arry at the -
+
+    artist, name, genre = file[0], file[1], file[2].chomp(".mp3")
+    genre = Genre.find_or_create_by_name(genre)
+    artist = Artist.find_or_create_by_name(artist)
+
+    new(name,artist,genre)#creates new instance using file name parts.
+
+
+    # binding.pry
+  end
+
 end
