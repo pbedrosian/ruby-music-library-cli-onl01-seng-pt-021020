@@ -56,7 +56,9 @@ class Song
 
     file = filename.split(" - ") #this splits the arry at the -
 
-    artist, name, genre = file[0], file[1], file[2].chomp(".mp3")
+    artist, name, genre = file[0], file[1], file[2].chomp(".mp3") #his sets the name, artist and genre to the files index number
+
+    #we want to make sure that we are only making new genres and artist so we call the find_or_create_by_name for both classes so we do not overlap and create duplicates 
     genre = Genre.find_or_create_by_name(genre)
     artist = Artist.find_or_create_by_name(artist)
 
